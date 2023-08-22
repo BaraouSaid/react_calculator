@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Display = ({ input, output }) => {
   <div className="output">
@@ -11,23 +11,27 @@ const Display = ({ input, output }) => {
 };
 
 const App = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState('0');
   const [output, setOutput] = useState('');
+  const [calcData, setCalcData] = useState('');
+
+  const handleInput = () => {};
+
+  const handleOutput = () => {};
+
+  useEffect(() => {
+    handleOutput();
+  });
+
   return (
     <React.Fragment>
-      <div className="flex bg-slate-300 h-screen">
-        <div className="p-5 mx-auto my-20 rounded-lg bg-slate-700 w-96">
+      <div className="flex bg-slate-300 min-h-screen">
+        <div className="p-5 mx-auto rounded-lg bg-slate-700 w-96">
           <div className="flex items-center w-full h-16 pl-2 space-x-2 text-2xl font-bold text-white header">
             <p> CALCULATOR </p>
           </div>
 
           <div className="w-full h-20 py-3 screen bg-black text-3xl text-right p-3">
-            {/* <input
-              id="display"
-              type="text"
-              placeholder="0"
-              className="w-full h-full p-3 text-3xl text-right bg-black"
-            /> */}
             <Display input={input} output={output} />
           </div>
 
