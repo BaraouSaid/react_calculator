@@ -1,21 +1,34 @@
 import React from 'react';
+import { useState } from 'react';
 
-const CalculatorApp = () => {
+const Display = ({ input, output }) => {
+  <div className="output">
+    <span className="result">{output}</span>
+    <span id="display" className="input">
+      {input}
+    </span>
+  </div>;
+};
+
+const App = () => {
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
   return (
     <React.Fragment>
-      <div className="flex bg-slate-300">
-        <div className="h-screen p-5 mx-auto my-10 overflow-hidden rounded-lg bg-slate-700 w-96">
+      <div className="flex bg-slate-300 h-screen">
+        <div className="p-5 mx-auto my-20 rounded-lg bg-slate-700 w-96">
           <div className="flex items-center w-full h-16 pl-2 space-x-2 text-2xl font-bold text-white header">
             <p> CALCULATOR </p>
           </div>
 
-          <div className="w-full h-20 py-3 screen">
-            <input
+          <div className="w-full h-20 py-3 screen bg-black text-3xl text-right p-3">
+            {/* <input
               id="display"
               type="text"
               placeholder="0"
               className="w-full h-full p-3 text-3xl text-right bg-black"
-            />
+            /> */}
+            <Display input={input} output={output} />
           </div>
 
           <div className="grid grid-cols-4 gap-2 mt-10 font-semibold">
@@ -145,4 +158,4 @@ const CalculatorApp = () => {
   );
 };
 
-export { CalculatorApp };
+export default App;
