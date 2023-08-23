@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-stone-700 w-96 rounded-lg my-10 p-5">
-        <div className="output bg-black h-20 p-2 border border-white">
+        <div className="output bg-black h-20 p-2 border-2 border-b-stone-500 border-r-stone-500 border-stone-300">
           <div className="previous-operand"></div>
           <div className="current-operand"></div>
         </div>
