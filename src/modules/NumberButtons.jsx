@@ -1,4 +1,4 @@
-import { ACTIONS } from './App';
+import { ACTIONS } from '../App';
 
 const NumberButtons = (dispatch, number) => {
   return (
@@ -9,3 +9,5 @@ const NumberButtons = (dispatch, number) => {
     </button>
   );
 };
+
+export default NumberButtons;

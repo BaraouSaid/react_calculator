@@ -1,5 +1,6 @@
 import React from 'react';
 import { useReducer } from 'react';
+import NumberButtons from './modules/NumberButtons';
 
 const ACTIONS = {
   ADD_NUMBER: 'add-number',
