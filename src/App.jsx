@@ -1,6 +1,7 @@
 import React from 'react';
 import { useReducer } from 'react';
 import NumberButton from './modules/NumberButton';
+import OperationButton from './modules/OperationButton';
 
 const ACTIONS = {
   ADD_NUMBER: 'add-number',
@@ -12,9 +13,14 @@ const ACTIONS = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_NUMBER:
+      if (payload.number === '0' && state.currentOperand === '0') return state;
       return {
         ...state,
         currentOperand: `${state.currentOperand || ''}${payload.number}`,
+      };
+    case ACTIONS.CHOOSE_OPERATION:
+      return {
+        ...state,
       };
     default:
       return state;
@@ -52,6 +58,12 @@ const App = () => {
           <button id="divide" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
             /
           </button>
+          <OperationButton
+            id="divide"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            operation="/"
+            dispatch={dispatch}
+          />
           <button
             id="multiply"
             className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
