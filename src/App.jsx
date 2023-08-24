@@ -14,6 +14,8 @@ function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_NUMBER:
       if (payload.number === '0' && state.currentOperand === '0') return state;
+      if (payload.number === '.' && state.currentOperand.includes('.'))
+        return state;
       return {
         ...state,
         currentOperand: `${state.currentOperand || ''}${payload.number}`,
