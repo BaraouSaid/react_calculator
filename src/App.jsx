@@ -24,6 +24,8 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
       };
+    case ACTIONS.CLEAR:
+      return {};
     default:
       return state;
   }
@@ -54,6 +56,7 @@ const App = () => {
           <button
             id="clear"
             className="bg-red-500 p-1 w-30 h-20 cols-2 rounded-xl col-span-2"
+            onClick={() => dispatch({ type: ACTIONS.CLEAR })}
           >
             AC
           </button>
