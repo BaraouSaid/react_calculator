@@ -14,7 +14,7 @@ function reducer(state, { type, payload }) {
     case ACTIONS.ADD_NUMBER:
       return {
         ...state,
-        currentOperand: `${currentOperand || ''}${payload.number}`,
+        currentOperand: `${state.currentOperand || ''}${payload.number}`,
       };
     default:
       return state;
