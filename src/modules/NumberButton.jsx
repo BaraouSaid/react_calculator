@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { ACTIONS } from '../App';
 
-const NumberButton = ({ dispatch, number }) => {
+function NumberButton({ dispatch, number }) {
   return (
     <button
       className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
@@ -11,6 +12,6 @@ const NumberButton = ({ dispatch, number }) => {
       {number}
     </button>
   );
-};
+}
 
 export default NumberButton;

@@ -9,21 +9,24 @@ const ACTIONS = {
   CALCULATE: 'calculate',
 };
 
-const reducer = (state, { type, payload }) => {
+function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_NUMBER:
       return {
         ...state,
-        currentOperand: `${currentOperand || ''}${payload.digit}`,
+        currentOperand: `${currentOperand || ''}${payload.number}`,
       };
+    default:
+      return state;
   }
-};
+}
 
 const App = () => {
   const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
     reducer,
     {}
   );
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-black w-96 rounded-lg my-10 p-5">
