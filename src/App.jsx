@@ -64,57 +64,81 @@ const App = () => {
             number="7"
             dispatch={dispatch}
           />
-          <button id="eight" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            8
-          </button>
-          <button id="nine" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            9
-          </button>
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="8"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="9"
+            dispatch={dispatch}
+          />
           <button
             id="substract"
             className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
           >
             -
           </button>
-          <button id="four" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            4
-          </button>
-          <button id="five" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            5
-          </button>
-          <button id="six" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            6
-          </button>
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="4"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="5"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="6"
+            dispatch={dispatch}
+          />
           <button id="add" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
             +
           </button>
-          <button id="one" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            1
-          </button>
-          <button id="two" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            2
-          </button>
-          <button id="three" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            3
-          </button>
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="1"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="2"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="3"
+            dispatch={dispatch}
+          />
           <button
             id="equals"
             className="bg-blue-500 p-1 w-20 h-30 rounded-xl row-span-2"
           >
             =
           </button>
-          <button
-            id="zero"
-            className="bg-stone-100 p-1 w-30 h-20 rounded-xl col-span-2"
-          >
-            0
-          </button>
-          <button
-            id="decimal"
+          <NumberButton
+            id="seven"
             className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
-          >
-            .
-          </button>
+            number="0"
+            dispatch={dispatch}
+          />
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="."
+            dispatch={dispatch}
+          />
         </div>
       </div>
     </div>
