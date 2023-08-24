@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReducer } from 'react';
-import NumberButtons from './modules/NumberButtons';
+import NumberButton from './modules/NumberButton';
 
 const ACTIONS = {
   ADD_NUMBER: 'add-number',
@@ -55,9 +55,12 @@ const App = () => {
           >
             X
           </button>
-          <button id="seven" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
-            7
-          </button>
+          <NumberButton
+            id="seven"
+            className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+            number="7"
+            dispatch={dispatch}
+          />
           <button id="eight" className="bg-stone-100 p-1 w-20 h-20 rounded-xl">
             8
           </button>
