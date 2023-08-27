@@ -1,12 +1,13 @@
-/* eslint-disable react/prop-types */
 import { ACTIONS } from '../App';
 
-function NumberButton({ dispatch, number }) {
+function NumberButton({ dispatch, number, id, className }) {
   return (
     <button
-      className="bg-stone-100 p-1 w-20 h-20 rounded-xl"
+      id={id}
+      className={className}
+      // className="w-20 h-20 p-1 bg-stone-100 rounded-xl"
       onClick={() =>
-        dispatch({ type: ACTIONS.ADD_NUMBER, payload: { number } })
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { number } })
       }
     >
       {number}
