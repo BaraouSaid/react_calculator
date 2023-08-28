@@ -13,26 +13,46 @@ const ACTIONS = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.CLEAR:
-      return {};
+      return {
+        initialOperand: '0',
+      };
     case ACTIONS.ADD_NUMBER:
       if (payload.number === '0' && state.currentOperand === '0') return state;
+      if (
+        payload.number === '.' &&
+        state.currentOperand === state.initialOperand
+      )
+        return state;
+
       if (payload.number === '.' && state.currentOperand.includes('.'))
         return state;
+
+      if (payload.number === '.' && state.currentOperand === '0') {
+        return {
+          ...state,
+          initialOperand: '',
+          currentOperand: `${state.currentOperand}${payload.number}`,
+        };
+      }
       return {
         ...state,
         initialOperand: '',
         currentOperand: `${state.currentOperand || ''}${payload.number}`,
       };
+
     case ACTIONS.CHOOSE_OPERATION:
-      if (state.currentOperand == null && state.previousOperand == null) {
+      if (
+        state.currentOperand === undefined &&
+        state.previousOperand === undefined
+      ) {
         return state;
       }
-      if (state.previousOperand === null) {
+      if (state.previousOperand === undefined) {
         return {
           ...state,
           operation: payload.operation,
           previousOperand: state.currentOperand,
-          currentOperand: null,
+          currentOperand: '',
         };
       }
   }
@@ -40,7 +60,12 @@ function reducer(state, { type, payload }) {
 
 const App = () => {
   const [
-    { initialOperand = '0', currentOperand, previousOperand, operation },
+    {
+      initialOperand = '0',
+      currentOperand = null,
+      previousOperand = null,
+      operation = null,
+    },
     dispatch,
   ] = useReducer(reducer, {});
 
