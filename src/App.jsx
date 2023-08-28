@@ -5,18 +5,21 @@ import OperationButton from './modules/OperationButton';
 
 const ACTIONS = {
   ADD_NUMBER: 'add-number',
-  CHOOSE_OPERATION: 'chose-operation',
+  CHOOSE_OPERATION: 'choose-operation',
   CLEAR: 'clear',
   CALCULATE: 'calculate',
 };
 
 function reducer(state, { type, payload }) {
   switch (type) {
-    case ACTIONS.CLEAR:
-      return {
-        initialOperand: '0',
-      };
     case ACTIONS.ADD_NUMBER:
+      if (state.overwrite) {
+        return {
+          ...state,
+          currentOperand: payload.number,
+          overwrite: false,
+        };
+      }
       if (payload.number === '0' && state.currentOperand === '0') return state;
       if (
         payload.number === '.' &&
@@ -47,6 +50,14 @@ function reducer(state, { type, payload }) {
       ) {
         return state;
       }
+
+      if (state.currentOperand === null) {
+        return {
+          ...state,
+          operation: payload.operation,
+        };
+      }
+
       if (state.previousOperand === undefined) {
         return {
           ...state,
@@ -55,7 +66,72 @@ function reducer(state, { type, payload }) {
           currentOperand: '',
         };
       }
+
+      if (state.currentOperand === null) {
+        return {
+          ...state,
+          operation: payload.operation,
+        };
+      }
+
+      return {
+        ...state,
+        previousOperand: evaluate(state),
+        operation: payload.operation,
+        currentOperand: '',
+      };
+    case ACTIONS.CLEAR:
+      return {
+        initialOperand: '0',
+      };
+    case ACTIONS.CALCULATE:
+      if (
+        state.operation === null ||
+        state.currentOperand === null ||
+        state.previousOperand === 0
+      ) {
+        return state;
+      }
+
+      if (evaluate(state)) {
+        return {
+          ...state,
+          previousOperand: null,
+        };
+      }
+
+      return {
+        ...state,
+        overwrite: true,
+        previousOperand: null,
+        operation: null,
+        currentOperand: evaluate(state),
+      };
   }
+}
+
+function evaluate({ currentOperand, previousOperand, operation }) {
+  const current = parseFloat(currentOperand);
+  const previous = parseFloat(previousOperand);
+  // if (isNaN(current) || isNaN(previous)) {
+  //   return 'ERROR';
+  // }
+  let computation = '';
+  switch (operation) {
+    case '+':
+      computation = eval(previous + current);
+      break;
+    case '-':
+      computation = eval(previous - current);
+      break;
+    case 'X':
+      computation = eval(previous * current);
+      break;
+    case '/':
+      computation = eval(previous / current);
+      break;
+  }
+  return computation.toString();
 }
 
 const App = () => {
@@ -171,6 +247,7 @@ const App = () => {
           <button
             id="equals"
             className="w-20 row-span-2 p-1 bg-blue-500 h-30 rounded-xl"
+            onClick={() => dispatch({ type: ACTIONS.CALCULATE })}
           >
             =
           </button>
