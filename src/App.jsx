@@ -85,12 +85,24 @@ function reducer(state, { type, payload }) {
         initialOperand: '0',
       };
     case ACTIONS.CALCULATE:
+      if (isNaN(evaluate(state))) {
+        return {
+          initialOperand: '',
+          currentOperand: 'ERROR',
+        };
+      }
       if (
         state.operation === null ||
         state.currentOperand === null ||
         state.previousOperand === 0
       ) {
         return state;
+      }
+
+      if (evaluate(state)) {
+        return {
+          ...state,
+        };
       }
 
       return {
