@@ -93,13 +93,6 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      if (evaluate(state)) {
-        return {
-          ...state,
-          previousOperand: null,
-        };
-      }
-
       return {
         ...state,
         overwrite: true,
