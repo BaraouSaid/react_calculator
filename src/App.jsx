@@ -44,11 +44,18 @@ function reducer(state, { type, payload }) {
       };
 
     case ACTIONS.CHOOSE_OPERATION:
-      if (
-        state.currentOperand === undefined &&
-        state.previousOperand === undefined
-      ) {
+      if (state.currentOperand === null && state.previousOperand === null) {
         return state;
+      }
+
+      if (state.currentOperand === '-') {
+        return {
+          ...state,
+          initialOperand: '',
+          previousOperand: evaluate(state),
+          operation: payload.operation,
+          currentOperand: evaluate(state),
+        };
       }
 
       if (state.currentOperand === null) {
@@ -63,11 +70,11 @@ function reducer(state, { type, payload }) {
           ...state,
           operation: payload.operation,
           previousOperand: state.currentOperand,
-          currentOperand: '',
+          currentOperand: null,
         };
       }
 
-      if (state.currentOperand === null) {
+      if (state.currentOperand === undefined) {
         return {
           ...state,
           operation: payload.operation,
@@ -80,37 +87,34 @@ function reducer(state, { type, payload }) {
         operation: payload.operation,
         currentOperand: '',
       };
+
     case ACTIONS.CLEAR:
       return {
         initialOperand: '0',
       };
+
     case ACTIONS.CALCULATE:
       if (isNaN(evaluate(state))) {
         return {
-          initialOperand: '',
+          initialOperand: null,
           currentOperand: 'ERROR',
         };
       }
       if (
         state.operation === null ||
         state.currentOperand === null ||
-        state.previousOperand === 0
+        state.previousOperand === '0'
       ) {
         return state;
-      }
-
-      if (evaluate(state)) {
-        return {
-          ...state,
-        };
       }
 
       return {
         ...state,
         overwrite: true,
-        previousOperand: null,
+        previousOperand: evaluate(state),
+        // operation: null,
+        currentOperand: null,
         operation: null,
-        currentOperand: evaluate(state),
       };
   }
 }
@@ -121,6 +125,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
   // if (isNaN(current) || isNaN(previous)) {
   //   return 'ERROR';
   // }
+
   let computation = '';
   switch (operation) {
     case '+':
@@ -154,11 +159,14 @@ const App = () => {
     <div className="flex items-center justify-center min-h-screen">
       <div className="p-5 my-10 bg-black rounded-lg w-96">
         <h1 className="mb-3 text-lg font-bold text-white">CALCULATOR</h1>
-        <div className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300">
+        <div
+          id="display"
+          className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300"
+        >
           <div className="text-white previous-operand">
             {previousOperand} {operation}
           </div>
-          <div id="display" className="text-xl text-white current-operand">
+          <div className="text-xl text-white current-operand">
             {initialOperand}
             {currentOperand}
           </div>
