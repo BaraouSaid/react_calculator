@@ -48,15 +48,15 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      if (state.currentOperand === '-') {
-        return {
-          ...state,
-          initialOperand: '',
-          previousOperand: evaluate(state),
-          operation: payload.operation,
-          currentOperand: evaluate(state),
-        };
-      }
+      // if (state.currentOperand === '-') {
+      //   return {
+      //     ...state,
+      //     initialOperand: '',
+      //     previousOperand: evaluate(state),
+      //     operation: payload.operation,
+      //     currentOperand: evaluate(state),
+      //   };
+      // }
 
       if (state.currentOperand === null) {
         return {
@@ -74,12 +74,12 @@ function reducer(state, { type, payload }) {
         };
       }
 
-      if (state.currentOperand === undefined) {
-        return {
-          ...state,
-          operation: payload.operation,
-        };
-      }
+      // if (state.currentOperand === undefined) {
+      //   return {
+      //     ...state,
+      //     operation: payload.operation,
+      //   };
+      // }
 
       return {
         ...state,
