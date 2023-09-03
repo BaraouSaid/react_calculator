@@ -57,6 +57,7 @@ function reducer(state, { type, payload }) {
         return {
           ...state,
           // operation: null,
+          multiply: true,
           currentOperand: payload.operation,
         };
       }
@@ -114,15 +115,6 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      // if (state.operation === '*' && payload.operation === '-') {
-      //   return {
-      //     ...state,
-      //     previousOperand: evaluate(state),
-      //     currentOperand: null,
-      //     operation: payload.operation,
-      //   };
-      // }
-
       if (isNaN(state.previousOperand)) {
         return {
           ...state,
@@ -142,12 +134,7 @@ function reducer(state, { type, payload }) {
   }
 }
 
-function evaluate({
-  currentOperand,
-  previousOperand,
-  operation,
-  multiply = false,
-}) {
+function evaluate({ currentOperand, previousOperand, operation }) {
   const current = parseFloat(currentOperand);
   const previous = parseFloat(previousOperand);
   // if (isNaN(current) || isNaN(previous)) {
@@ -179,6 +166,7 @@ const App = () => {
       currentOperand = null,
       previousOperand = null,
       operation = null,
+      multiply = 'false',
     },
     dispatch,
   ] = useReducer(reducer, {});
