@@ -37,6 +37,7 @@ function reducer(state, { type, payload }) {
           currentOperand: `${state.currentOperand}${payload.number}`,
         };
       }
+
       return {
         ...state,
         initialOperand: '',
@@ -48,22 +49,34 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      // if (state.currentOperand === '-') {
-      //   return {
-      //     ...state,
-      //     initialOperand: '',
-      //     previousOperand: evaluate(state),
-      //     operation: payload.operation,
-      //     currentOperand: evaluate(state),
-      //   };
-      // }
+      if (
+        state.currentOperand === null &&
+        state.previousOperand !== null &&
+        state.operation === '*'
+      ) {
+        return {
+          ...state,
+          // operation: null,
+          currentOperand: payload.operation,
+        };
+      }
 
       if (state.currentOperand === null) {
         return {
           ...state,
+          // previousOperation: evaluate(state),
           operation: payload.operation,
+          // currentOperand: payload.operation,
         };
       }
+
+      // if (state.currentOperand !== null) {
+      //   return {
+      //     ...state,
+      //     previousOperand: state.currenOperand,
+      //     currentOperand: payload.operation,
+      //   };
+      // }
 
       if (state.previousOperand === undefined) {
         return {
@@ -73,13 +86,6 @@ function reducer(state, { type, payload }) {
           currentOperand: null,
         };
       }
-
-      // if (state.currentOperand === undefined) {
-      //   return {
-      //     ...state,
-      //     operation: payload.operation,
-      //   };
-      // }
 
       return {
         ...state,
@@ -108,18 +114,40 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
+      // if (state.operation === '*' && payload.operation === '-') {
+      //   return {
+      //     ...state,
+      //     previousOperand: evaluate(state),
+      //     currentOperand: null,
+      //     operation: payload.operation,
+      //   };
+      // }
+
+      if (isNaN(state.previousOperand)) {
+        return {
+          ...state,
+          previousOperand: evaluate(state),
+          currentOperand: null,
+          operation: payload.operation,
+        };
+      }
+
       return {
         ...state,
         overwrite: true,
         previousOperand: evaluate(state),
-        // operation: null,
         currentOperand: null,
         operation: null,
       };
   }
 }
 
-function evaluate({ currentOperand, previousOperand, operation }) {
+function evaluate({
+  currentOperand,
+  previousOperand,
+  operation,
+  multiply = false,
+}) {
   const current = parseFloat(currentOperand);
   const previous = parseFloat(previousOperand);
   // if (isNaN(current) || isNaN(previous)) {
