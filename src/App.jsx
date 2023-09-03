@@ -71,14 +71,6 @@ function reducer(state, { type, payload }) {
         };
       }
 
-      // if (state.currentOperand !== null) {
-      //   return {
-      //     ...state,
-      //     previousOperand: state.currenOperand,
-      //     currentOperand: payload.operation,
-      //   };
-      // }
-
       if (state.previousOperand === undefined) {
         return {
           ...state,
