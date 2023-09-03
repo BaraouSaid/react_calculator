@@ -49,27 +49,23 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      if (
-        state.currentOperand === null &&
-        state.previousOperand !== null &&
-        state.operation === '*'
-      ) {
+      if (state.operation === 'X' && state.currentOperand === null) {
         return {
           ...state,
           // operation: null,
-          multiply: true,
           currentOperand: payload.operation,
         };
       }
 
-      if (state.currentOperand === null) {
-        return {
-          ...state,
-          // previousOperation: evaluate(state),
-          operation: payload.operation,
-          // currentOperand: payload.operation,
-        };
-      }
+      if (state.previousOperand)
+        if (state.currentOperand === null) {
+          return {
+            ...state,
+            // previousOperation: evaluate(state),
+            operation: payload.operation,
+            // currentOperand: payload.operation,
+          };
+        }
 
       if (state.previousOperand === undefined) {
         return {
@@ -158,7 +154,6 @@ const App = () => {
       currentOperand = null,
       previousOperand = null,
       operation = null,
-      multiply = 'false',
     },
     dispatch,
   ] = useReducer(reducer, {});
