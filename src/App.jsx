@@ -52,7 +52,6 @@ function reducer(state, { type, payload }) {
       if (state.operation === 'X' && state.currentOperand === null) {
         return {
           ...state,
-          // operation: null,
           currentOperand: payload.operation,
         };
       }
