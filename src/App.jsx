@@ -169,12 +169,12 @@ const App = () => {
   ] = useReducer(reducer, {});
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen font-body">
       <div className="p-5 my-10 bg-black rounded-lg w-96">
         <h1 className="mb-3 text-lg font-bold text-white">CALCULATOR</h1>
         <div
           id="display"
-          className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300 font-family:"
+          className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300 "
         >
           <div className="text-white previous-operand">
             {previousOperand} {operation}
