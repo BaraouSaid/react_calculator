@@ -59,10 +59,19 @@ function reducer(state, { type, payload }) {
         };
       }
 
+      if (state.currentOperand === '-' && payload.operation === '+') {
+        return {
+          ...state,
+          previousState: evaluate(state),
+          operation: payload.operation,
+          currentOperand: null,
+        };
+      }
+
       if (state.currentOperand === null) {
         return {
           ...state,
-          // previousOperation: evaluate(state),
+          previousOperation: evaluate(state),
           operation: payload.operation,
           // currentOperand: payload.operation,
         };
