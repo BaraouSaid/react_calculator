@@ -174,7 +174,7 @@ const App = () => {
         <h1 className="mb-3 text-lg font-bold text-white">CALCULATOR</h1>
         <div
           id="display"
-          className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300"
+          className="flex flex-col items-end justify-around h-20 p-2 break-all bg-black border-2 output border-b-stone-500 border-r-stone-500 border-stone-300 font-family:"
         >
           <div className="text-white previous-operand">
             {previousOperand} {operation}
