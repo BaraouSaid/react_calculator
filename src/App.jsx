@@ -49,22 +49,24 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
-      if (state.operation === 'X' && state.currentOperand === null) {
+      if (
+        (state.operation === 'X' || state.operation === '/') &&
+        state.currentOperand === null
+      ) {
         return {
           ...state,
           currentOperand: payload.operation,
         };
       }
 
-      if (state.previousOperand)
-        if (state.currentOperand === null) {
-          return {
-            ...state,
-            // previousOperation: evaluate(state),
-            operation: payload.operation,
-            // currentOperand: payload.operation,
-          };
-        }
+      if (state.currentOperand === null) {
+        return {
+          ...state,
+          // previousOperation: evaluate(state),
+          operation: payload.operation,
+          // currentOperand: payload.operation,
+        };
+      }
 
       if (state.previousOperand === undefined) {
         return {
