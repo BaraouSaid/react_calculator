@@ -72,7 +72,7 @@ function reducer(state, { type, payload }) {
         };
       }
 
-      //To check if there is 2
+      //To calculate the result everytime we add an operator after an operation without clicking "="
 
       if (state.currentOperand === null) {
         return {
