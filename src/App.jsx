@@ -142,9 +142,6 @@ function reducer(state, { type, payload }) {
 function evaluate({ currentOperand, previousOperand, operation }) {
   const current = parseFloat(currentOperand);
   const previous = parseFloat(previousOperand);
-  // if (isNaN(current) || isNaN(previous)) {
-  //   return 'ERROR';
-  // }
 
   let computation = '';
   switch (operation) {
