@@ -79,9 +79,10 @@ function reducer(state, { type, payload }) {
           ...state,
           previousOperation: evaluate(state),
           operation: payload.operation,
-          // currentOperand: payload.operation,
         };
       }
+
+      //To make the currentOperand become the previousOperand when an operator is added
 
       if (state.previousOperand === undefined) {
         return {
