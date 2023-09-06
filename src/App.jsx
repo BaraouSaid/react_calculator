@@ -49,6 +49,8 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
+      //To make sure that we can mutlpiply or divide a negative number
+
       if (
         (state.operation === 'X' || state.operation === '/') &&
         state.currentOperand === null
@@ -59,6 +61,8 @@ function reducer(state, { type, payload }) {
         };
       }
 
+      //To make sure that if there at least 3 operators after a number, the last one overwrites the first ones
+
       if (state.currentOperand === '-' && payload.operation === '+') {
         return {
           ...state,
@@ -67,6 +71,8 @@ function reducer(state, { type, payload }) {
           currentOperand: null,
         };
       }
+
+      //To check if there is 2
 
       if (state.currentOperand === null) {
         return {
