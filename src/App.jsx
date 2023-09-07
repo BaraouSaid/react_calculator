@@ -96,8 +96,8 @@ function reducer(state, { type, payload }) {
       //To handle negative sign when "-" is entered at first
 
       if (
-        state.initialOperand == '0' &&
-        state.currentOperand == null &&
+        state.currentOperand == '0' &&
+        state.previousOperand == undefined &&
         payload.operation == '-'
       ) {
         return {
