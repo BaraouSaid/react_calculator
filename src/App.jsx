@@ -93,6 +93,21 @@ function reducer(state, { type, payload }) {
         };
       }
 
+      //To handle negative sign when "-" is entered at first
+
+      if (
+        state.initialOperand == '0' &&
+        state.currentOperand == null &&
+        payload.operation == '-'
+      ) {
+        return {
+          ...state,
+          initialOperand: '',
+          // currentOperand: payload.operation,
+          previousOperand: null,
+        };
+      }
+
       return {
         ...state,
         previousOperand: evaluate(state),
